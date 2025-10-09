@@ -1,33 +1,33 @@
-from random import randint
+def sqrt(x):
+  return x ** 0.5
 
-print('')
-
-n = 15
-a = [randint(-20, 20) for _ in range(n)]
-
-print('Исходный массив:')
-print(*a)
-
-el_min = a[0]
-i_min = 0
-
-for i in range(1, n):
-  if a[i] < el_min:
-    el_min = a[i]
-    i_min = i
-
-print(f'Минимальный элемент: {el_min} по индексу {i_min}')
-
-def delete(a, i):
-  for i in range(i, n - 1):
-    a[i] = a[i + 1]
-
-i = 0
-while a[i] != el_min:
-  if a[i] < 0:
-    delete(a, i)
+def solve_square_equation():
+  print('Решим уравнине вида ax^2 + bx + c = 0')
+  a = int(input('Введита a: '))
+  b = int(input('Введита b: '))
+  c = int(input('Введита c: '))
+  d = b**2 - 4 * a * c
+  if a == 0:
+    print('Если a = 0, то это не квадратное уравнение!')
+    print('У линейных уравнений всегда 1 корень')
+    root = -c / b
+    print(f'x = {root}')
+    return
+  if d > 0:
+    print('D > 0, будет 2 корня')
+    roots = [
+      (-b + sqrt(d)) / (2 * a),
+      (-b - sqrt(d)) / (2 * a)
+    ]
+    print(' или '.join(f'x = {root}' for root in roots))
+    return
+  elif d == 0:
+    print('D = 0, будет 1 корень')
+    root = (-b) / (2 * a)
+    print(f'x = {root}')
+    return
   else:
-    i += 1
+    print('D < 0, корней нет')
+    return
 
-print('Результат обработки:')
-print(*a)
+solve_square_equation()
